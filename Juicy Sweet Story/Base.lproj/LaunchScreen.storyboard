@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dvw-d1-BlO">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="sw0-lv-sUI">
+            <objects>
+                <viewController id="Dvw-d1-BlO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VTf-Hb-7cU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="GlL-Sk-ZRa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="g9S-Ob-veL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="GlL-Sk-ZRa" secondAttribute="bottom" id="76M-Lb-B0x"/>
+                            <constraint firstItem="GlL-Sk-ZRa" firstAttribute="leading" secondItem="VTf-Hb-7cU" secondAttribute="leading" id="mAC-gU-3Mk"/>
+                            <constraint firstItem="GlL-Sk-ZRa" firstAttribute="top" secondItem="VTf-Hb-7cU" secondAttribute="top" id="wVs-TJ-ulS"/>
+                            <constraint firstAttribute="trailing" secondItem="GlL-Sk-ZRa" secondAttribute="trailing" id="zUn-ut-t16"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="s2w-zm-2Rl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wVZ-wH-TIz" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76.811594202898561" y="32.8125"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loading" width="390" height="844"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
