@@ -32,10 +32,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image 16" translatesAutoresizingMaskIntoConstraints="NO" id="5pw-I3-SeF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image 16" translatesAutoresizingMaskIntoConstraints="NO" id="5pw-I3-SeF">
                                 <rect key="frame" x="0.0" y="133" width="414" height="347"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Level completed" translatesAutoresizingMaskIntoConstraints="NO" id="c3j-Fo-djC">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Level completed" translatesAutoresizingMaskIntoConstraints="NO" id="c3j-Fo-djC">
                                 <rect key="frame" x="65" y="383" width="285" height="155.5"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="dXs-UY-7Iv">
@@ -135,7 +135,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image 15-4" translatesAutoresizingMaskIntoConstraints="NO" id="hE8-2N-NHL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image 15-4" translatesAutoresizingMaskIntoConstraints="NO" id="hE8-2N-NHL">
                                 <rect key="frame" x="0.0" y="142" width="414" height="347"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="level failed" translatesAutoresizingMaskIntoConstraints="NO" id="5CN-dm-zTg">
@@ -591,6 +591,7 @@
                             <constraint firstItem="Xpg-5P-6ap" firstAttribute="centerY" secondItem="HhN-hi-h95" secondAttribute="centerY" id="fQd-kp-3dt"/>
                             <constraint firstItem="ahw-Ir-Ag3" firstAttribute="trailing" secondItem="eUL-MM-N9n" secondAttribute="trailing" constant="80" id="hem-gX-KAn"/>
                             <constraint firstItem="Xpg-5P-6ap" firstAttribute="centerY" secondItem="Trq-a4-NT6" secondAttribute="centerY" id="iZt-dx-Nv3"/>
+                            <constraint firstItem="QoI-gg-8UU" firstAttribute="height" secondItem="owU-NP-0MK" secondAttribute="height" multiplier="0.412946" id="jx0-jm-UiS"/>
                             <constraint firstItem="MaL-89-YJI" firstAttribute="top" secondItem="owU-NP-0MK" secondAttribute="top" id="og2-W4-UAR"/>
                             <constraint firstItem="MaL-89-YJI" firstAttribute="leading" secondItem="owU-NP-0MK" secondAttribute="leading" id="pkT-Oz-jsA"/>
                             <constraint firstItem="Xpg-5P-6ap" firstAttribute="centerY" secondItem="Wb4-ds-JTo" secondAttribute="centerY" id="ppe-wm-yDk"/>

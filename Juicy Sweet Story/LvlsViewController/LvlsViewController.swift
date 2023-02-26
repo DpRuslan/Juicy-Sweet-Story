@@ -45,12 +45,13 @@ extension LvlsViewController: UICollectionViewDelegate {
         // TODO: Finish It
         guard indexPath.row == 0 else {return}
         let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvl1ViewController") as! GameLvl1ViewController
-        vc.imageChangeDelegate = self
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension LvlsViewController: ImageChangeLvlDelegate {
+// MARK: GameLvl1ViewControllerDelegate
+extension LvlsViewController: GameLvl1ViewControllerDelegate {
     func imageChange() {
         data[1] = UIImage(named: "u_2")!
         // TODO: maybe self collection not sure

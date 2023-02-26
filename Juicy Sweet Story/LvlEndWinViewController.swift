@@ -1,19 +1,19 @@
 import UIKit
 
-protocol LevelEndWinRestartButtonDelegate: AnyObject {
+protocol LvlEndWinViewControllerDelegate: AnyObject {
     func restartButtonPressedLvlEndWin()
-}
-protocol LevelEndWinHomeButtonDelegate: AnyObject {
     func homeButtonPressedLvlEndWin()
-}
-protocol LevelEndWinNextButtonDelegate: AnyObject {
     func nextButtonPressedLvlEndWin()
 }
 
+extension LvlEndWinViewControllerDelegate {
+    func restartButtonPressedLvlEndWin() {}
+    func homeButtonPressedLvlEndWin() {}
+    func nextButtonPressedLvlEndWin() {}
+}
+
 final class LvlEndWinViewController: UIViewController {
-    weak var homeButtonDelegate: LevelEndWinHomeButtonDelegate?
-    weak var nextButtonDelegate: LevelEndWinNextButtonDelegate?
-    weak var restartButtonDelegate: LevelEndWinRestartButtonDelegate?
+    weak var delegate: LvlEndWinViewControllerDelegate?
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var bestTimeLabel: UILabel!
     var time: String!
@@ -21,39 +21,44 @@ final class LvlEndWinViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -10.0, .strokeColor: UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1), .foregroundColor: UIColor.white]
-        timeLabel.attributedText = NSAttributedString(string: "TIME: \(time!)", attributes: attributes)
-        timeLabel.font = UIFont(name: "Knewave-Regular", size: 34)
-        timeLabel.backgroundColor = .white
-        timeLabel.layer.borderWidth = 5
-        timeLabel.layer.cornerRadius = 20
-        timeLabel.layer.masksToBounds = true
-        timeLabel.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
-        
-        bestTimeLabel.attributedText = NSAttributedString(string: "BEST TIME: 01:02", attributes: attributes)
-        bestTimeLabel.font = UIFont(name: "Knewave-Regular", size: 34)
-        bestTimeLabel.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
-        bestTimeLabel.backgroundColor = .white
-        bestTimeLabel.layer.borderWidth = 5
-        bestTimeLabel.layer.cornerRadius = 20
-        bestTimeLabel.layer.masksToBounds = true
+        setFontTitle(label: timeLabel, title: "TIME: \(time!)")
+        setFontTitle(label: bestTimeLabel, title: "BEST TIME: 01:02")
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
         dismiss(animated: true) {
-            self.nextButtonDelegate?.nextButtonPressedLvlEndWin()
+            self.delegate?.nextButtonPressedLvlEndWin()
         }
     }
     
     @IBAction func homeButtonPressed(_ sender: Any) {
         dismiss(animated: true) {
-            self.homeButtonDelegate?.homeButtonPressedLvlEndWin()
+            self.delegate?.homeButtonPressedLvlEndWin()
         }
     }
     
     @IBAction func restartButtonPressed(_ sender: Any) {
         dismiss(animated: true) {
-            self.restartButtonDelegate?.restartButtonPressedLvlEndWin()
+            self.delegate?.restartButtonPressedLvlEndWin()
         }
+    }
+}
+
+// MARK: setFontTittle
+extension LvlEndWinViewController {
+    func setFontTitle(label: UILabel, title: String) {
+        let attributes: [NSAttributedString.Key : Any] = [
+            .strokeWidth: -10.0,
+            .strokeColor: UIColor(red: 173/255,green: 27/255, blue: 141/255, alpha: 1),
+            .foregroundColor: UIColor.white
+        ]
+        
+        label.attributedText = NSAttributedString(string: title, attributes: attributes)
+        label.font = UIFont(name: "Knewave-Regular", size: 34)
+        label.backgroundColor = .white
+        label.layer.borderWidth = 5
+        label.layer.cornerRadius = 20
+        label.layer.masksToBounds = true
+        label.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
     }
 }

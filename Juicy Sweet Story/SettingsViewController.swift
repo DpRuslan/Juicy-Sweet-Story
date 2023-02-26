@@ -17,15 +17,7 @@ final class SettingsViewController: UIViewController {
         setTitleFont(button: soundButton, title: "SOUND")
         setTitleFont(button: vibroButton, title: "VIBRO")
         setTitleFont(button: rateUsButton, title: "RATE US")
-        
-        let attributesForLabels: [NSAttributedString.Key : Any] = [
-            .strokeWidth: -12.0,
-            .strokeColor: UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1),
-            .foregroundColor: UIColor.white
-        ]
-        
-        settingsLabel.attributedText = NSAttributedString(string: "SETTINGS", attributes: attributesForLabels)
-        settingsLabel.font = UIFont(name: "Knewave-Regular", size: 34)
+        setFontForLabel(label: settingsLabel, title: "SETTINGS")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -64,3 +56,18 @@ extension SettingsViewController {
         button.layer.borderColor = UIColor.white.cgColor
     }
 }
+
+// MARK: setFontForLabel
+extension SettingsViewController {
+    private func setFontForLabel(label: UILabel, title: String) {
+        let attributesForLabel: [NSAttributedString.Key : Any] = [
+            .strokeWidth: -12.0,
+            .strokeColor: UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1),
+            .foregroundColor: UIColor.white
+        ]
+        
+        label.attributedText = NSAttributedString(string: title, attributes: attributesForLabel)
+        label.font = UIFont(name: "Knewave-Regular", size: 34)
+    }
+}
+

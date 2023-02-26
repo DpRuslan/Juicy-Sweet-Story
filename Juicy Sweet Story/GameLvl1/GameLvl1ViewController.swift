@@ -1,11 +1,11 @@
 import UIKit
 
-protocol ImageChangeLvlDelegate: AnyObject {
+protocol GameLvl1ViewControllerDelegate: AnyObject {
     func imageChange()
 }
 
 final class GameLvl1ViewController: UIViewController {
-    weak var imageChangeDelegate: ImageChangeLvlDelegate?
+    weak var delegate: GameLvl1ViewControllerDelegate?
     @IBOutlet private weak var viewOfCollection: UIView!
     @IBOutlet private weak var finalImage: UIImageView!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -39,7 +39,8 @@ final class GameLvl1ViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1,
                                      target: self,
                                      selector: (#selector(GameLvl1ViewController.updateTimer)),
-                                     userInfo: nil, repeats: true)
+                                     userInfo: nil, repeats: true
+        )
     }
     
     @objc func updateTimer() {
@@ -76,6 +77,7 @@ final class GameLvl1ViewController: UIViewController {
     }
 }
 
+// MARK: UICollectionViewDataSource
 extension GameLvl1ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         shuffledData.count
@@ -88,6 +90,7 @@ extension GameLvl1ViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegate
 extension GameLvl1ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
@@ -122,9 +125,7 @@ extension GameLvl1ViewController {
         if shuffledData == finalData {
             let vc = myStoryboard?.instantiateViewController(withIdentifier: "LvlEndWinViewController") as! LvlEndWinViewController
             timer?.invalidate()
-            vc.homeButtonDelegate = self
-            vc.nextButtonDelegate = self
-            vc.restartButtonDelegate = self
+            vc.delegate = self
             vc.time = self.timeString(time: TimeInterval(self.seconds))
             vc.isModalInPresentation = true
             navigationController?.present(vc, animated: true)
@@ -150,28 +151,26 @@ extension GameLvl1ViewController {
     }
 }
 
-extension GameLvl1ViewController: LevelEndWinHomeButtonDelegate {
-    func homeButtonPressedLvlEndWin() {
-        navigationController?.popToRootViewController(animated: true)
-    }
-}
-
-extension GameLvl1ViewController: LevelEndWinNextButtonDelegate {
+// MARK: LvlEndWinViewControllerDelegate
+extension GameLvl1ViewController: LvlEndWinViewControllerDelegate {
     func nextButtonPressedLvlEndWin() {
-        imageChangeDelegate?.imageChange()
+        delegate?.imageChange()
         navigationController?.popViewController(animated: true)
     }
-}
-
-extension GameLvl1ViewController: LevelEndWinRestartButtonDelegate {
+    
     func restartButtonPressedLvlEndWin() {
         seconds = 180
         runTimer()
         shuffledData = finalData.shuffled()
         collectionView.reloadData()
     }
+    
+    func homeButtonPressedLvlEndWin() {
+            navigationController?.popToRootViewController(animated: true)
+    }
 }
 
+// MARK: setTimerLabel
 extension GameLvl1ViewController {
     func setTimerLabel(label: UILabel, title: String) {
         let attributes: [NSAttributedString.Key : Any] = [
@@ -191,16 +190,18 @@ extension GameLvl1ViewController {
     }
 }
 
+// MARK: setViewOfCollection
 extension GameLvl1ViewController {
     func setViewOfCollection(viewOfCollection: UIView) {
         viewOfCollection.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
         //TODO: Maybe delete maskToBounds
         viewOfCollection.layer.masksToBounds = true
-        viewOfCollection.layer.borderWidth = 15
+        viewOfCollection.layer.borderWidth = 8
         viewOfCollection.layer.cornerRadius = 20
     }
 }
 
+// MARK: setImages
 extension GameLvl1ViewController {
     func setImages() {
         for i in 0...15 {
