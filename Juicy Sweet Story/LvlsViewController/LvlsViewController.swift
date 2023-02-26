@@ -42,7 +42,6 @@ extension LvlsViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 extension LvlsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Finish It
         guard indexPath.row == 0 else {return}
         let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvl1ViewController") as! GameLvl1ViewController
         vc.delegate = self
@@ -54,7 +53,6 @@ extension LvlsViewController: UICollectionViewDelegate {
 extension LvlsViewController: GameLvl1ViewControllerDelegate {
     func imageChange() {
         data[1] = UIImage(named: "u_2")!
-        // TODO: maybe self collection not sure
         collectionView.reloadData()
     }
 }

@@ -12,17 +12,33 @@ extension LvlEndWinViewControllerDelegate {
     func nextButtonPressedLvlEndWin() {}
 }
 
-final class LvlEndWinViewController: UIViewController {
+final class LvlEndViewController: UIViewController {
     weak var delegate: LvlEndWinViewControllerDelegate?
+    @IBOutlet private weak var levelCF: UIImageView!
+    @IBOutlet private weak var imageViewWinLose: UIImageView!
+    @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var bestTimeLabel: UILabel!
+    var success: Bool!
     var time: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        setFontTitle(label: timeLabel, title: "TIME: \(time!)")
-        setFontTitle(label: bestTimeLabel, title: "BEST TIME: 01:02")
+        if success == true {
+            imageViewWinLose.image = UIImage(named: "image 16")
+            setFontTitle(label: timeLabel, title: "TIME: \(time!)")
+            setFontTitle(label: bestTimeLabel, title: "BEST TIME: 01:02")
+        } else {
+            imageViewWinLose.image = UIImage(named: "image 15-4")
+            bestTimeLabel.isHidden = true
+            setFontTitle(label: timeLabel, title: "TIME: \(time!)")
+            nextButton.isEnabled = false
+            nextButton.setImage(UIImage(named: "Group 3-4"), for: .normal)
+            levelCF.image = UIImage(named: "level failed")
+        }
+        
+       
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
@@ -45,7 +61,7 @@ final class LvlEndWinViewController: UIViewController {
 }
 
 // MARK: setFontTittle
-extension LvlEndWinViewController {
+extension LvlEndViewController {
     func setFontTitle(label: UILabel, title: String) {
         let attributes: [NSAttributedString.Key : Any] = [
             .strokeWidth: -10.0,

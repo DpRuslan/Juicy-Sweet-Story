@@ -103,16 +103,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DCCC929B-5FE4-448F-9FA0-B3AAB2B964CB"
+            uuid = "FDDF59EB-4B36-49A9-BEC7-AFDF7475CE9F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Juicy Sweet Story/SettingsViewController.swift"
+            filePath = "Juicy Sweet Story/LvlEndWinViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "soundButtonPressed(_:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "homeButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

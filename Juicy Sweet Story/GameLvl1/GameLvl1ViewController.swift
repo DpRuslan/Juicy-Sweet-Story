@@ -46,8 +46,10 @@ final class GameLvl1ViewController: UIViewController {
     @objc func updateTimer() {
         if seconds == 0 {
             timer?.invalidate()
-            let vc = myStoryboard?.instantiateViewController(withIdentifier: "LevelEndLoseViewController") as! LvlEndLoseViewController
+            let vc = myStoryboard?.instantiateViewController(withIdentifier: "LvlEndViewController") as! LvlEndViewController
             timer?.invalidate()
+            vc.delegate = self
+            vc.success = false
             vc.time = timeString(time: TimeInterval(seconds))
             vc.isModalInPresentation = true
             navigationController?.present(vc, animated: true)
@@ -93,7 +95,7 @@ extension GameLvl1ViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 extension GameLvl1ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
             if self.selectedIndexPath == nil {
                 self.selectedIndexPath = indexPath
             } else {
@@ -117,14 +119,25 @@ extension GameLvl1ViewController: UICollectionViewDelegate {
         cell?.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
         return true
     }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.selectedIndexPath = nil
+            let cell = collectionView.cellForItem(at: indexPath)
+            cell?.layer.borderWidth = 0
+        }
+        return true
+    }
+    
 }
 
 // MARK: checkShuffledData
 extension GameLvl1ViewController {
     private func checkShuffledData() {
         if shuffledData == finalData {
-            let vc = myStoryboard?.instantiateViewController(withIdentifier: "LvlEndWinViewController") as! LvlEndWinViewController
+            let vc = myStoryboard?.instantiateViewController(withIdentifier: "LvlEndViewController") as! LvlEndViewController
             timer?.invalidate()
+            vc.success = true
             vc.delegate = self
             vc.time = self.timeString(time: TimeInterval(self.seconds))
             vc.isModalInPresentation = true
@@ -137,7 +150,7 @@ extension GameLvl1ViewController {
 extension GameLvl1ViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 2, bottom: 4, trailing: 2)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -185,7 +198,6 @@ extension GameLvl1ViewController {
         label.layer.borderWidth = 5
         label.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
         label.layer.cornerRadius = 20
-        // TODO: ?????? maybe remove
         label.layer.masksToBounds = true
     }
 }
@@ -194,10 +206,9 @@ extension GameLvl1ViewController {
 extension GameLvl1ViewController {
     func setViewOfCollection(viewOfCollection: UIView) {
         viewOfCollection.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
-        //TODO: Maybe delete maskToBounds
         viewOfCollection.layer.masksToBounds = true
-        viewOfCollection.layer.borderWidth = 8
-        viewOfCollection.layer.cornerRadius = 20
+        viewOfCollection.layer.borderWidth = 15
+        viewOfCollection.layer.cornerRadius = 50
     }
 }
 
