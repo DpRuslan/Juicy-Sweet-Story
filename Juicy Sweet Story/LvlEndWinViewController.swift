@@ -14,8 +14,8 @@ final class LvlEndWinViewController: UIViewController {
     weak var homeButtonDelegate: LevelEndWinHomeButtonDelegate?
     weak var nextButtonDelegate: LevelEndWinNextButtonDelegate?
     weak var restartButtonDelegate: LevelEndWinRestartButtonDelegate?
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var bestTimeLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var bestTimeLabel: UILabel!
     var time: String!
     override func viewDidLoad() {
         super.viewDidLoad()
