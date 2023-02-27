@@ -63,11 +63,13 @@ extension SettingsViewController {
         let attributesForLabel: [NSAttributedString.Key : Any] = [
             .strokeWidth: -12.0,
             .strokeColor: UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1),
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.white,
+            .font: UIFont(name: "Knewave-Regular", size: 34)!
+            
         ]
         
         label.attributedText = NSAttributedString(string: title, attributes: attributesForLabel)
-        label.font = UIFont(name: "Knewave-Regular", size: 34)
+       
     }
 }
 
