@@ -247,7 +247,7 @@ extension GameLvlViewController {
         } else if level == 1 {
             seconds = 170
         } else {
-            seconds = 150
+            seconds = 160
         }
     }
 }
