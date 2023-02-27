@@ -17,6 +17,7 @@ extension Level {
     }
 
     @NSManaged public var levelLockUnlock: Bool
+    @NSManaged public var id: Int64
 
 }
 

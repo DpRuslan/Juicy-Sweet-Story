@@ -7,7 +7,7 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var settingsButton: UIButton!
     @IBOutlet private weak var privacyPolicyButton: UIButton!
     private var myStoryboard: UIStoryboard?
-    private var lockUnlock: [Bool] = []
+    private var lockUnlock: [Int: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,9 +52,9 @@ extension MainViewController {
     func saveToCoreData() {
         for i in 0...11 {
             if i == 0 {
-                lockUnlock.append(true)
+                lockUnlock[i] = true
             } else {
-                lockUnlock.append(false)
+                lockUnlock[i] = false
             }
         }
         
@@ -62,7 +62,8 @@ extension MainViewController {
             if try AppDelegate.coreDataStack.managedContext.count(for: NSFetchRequest<Level>(entityName: "Level")) == 0 {
                 for i in lockUnlock {
                     let newLevel = Level(context: AppDelegate.coreDataStack.managedContext)
-                    newLevel.levelLockUnlock = i
+                    newLevel.levelLockUnlock = i.value
+                    newLevel.id = Int64(i.key)
                 }
                 try! AppDelegate.coreDataStack.managedContext.save()
             }

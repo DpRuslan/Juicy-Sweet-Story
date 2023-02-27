@@ -51,17 +51,19 @@ extension LvlsViewController: UICollectionViewDataSource {
 extension LvlsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // MARK: Just to stop program cause I need to do only 3 levels
-        if indexPath.row == 3 {
+        //MARK: Just to stop program from going to 4 lvl cause I needed to do 3 lvls.
+        if indexPath.row == 3 {return}
+        
+        
+        if valuesFromCoreData[indexPath.row] == false {
             return
+        } else {
+            let lvlID = objectsIdFromCoreData[indexPath.row + 1]
+            let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvlViewController") as! GameLvlViewController
+            vc.level = indexPath.row
+            vc.lvlID = lvlID
+            navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
-        let lvlID = objectsIdFromCoreData[indexPath.row + 1]
-        let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvlViewController") as! GameLvlViewController
-        vc.level = indexPath.row
-        vc.lvlID = lvlID
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -84,12 +86,9 @@ extension LvlsViewController {
     func setImages() {
         let fetchRequest: NSFetchRequest<Level> = Level.fetchRequest()
         let items = try! AppDelegate.coreDataStack.managedContext.fetch(fetchRequest)
-        var j = 0
         for i in items {
-            let objectID = i.objectID
-            objectsIdFromCoreData[j] = objectID
-            valuesFromCoreData[j] = i.levelLockUnlock
-            j += 1
+            objectsIdFromCoreData.updateValue(i.objectID, forKey: Int(i.id))
+            valuesFromCoreData.updateValue(i.levelLockUnlock, forKey: Int(i.id))
         }
         
         for i in valuesFromCoreData {
