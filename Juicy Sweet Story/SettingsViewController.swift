@@ -14,10 +14,10 @@ final class SettingsViewController: UIViewController {
         vibroImage.image = UIImage(named: "CHECKBOX")
         soundImage.image = UIImage(named: "CHECKBOX")
         
-        setTitleFont(button: soundButton, title: "SOUND")
-        setTitleFont(button: vibroButton, title: "VIBRO")
-        setTitleFont(button: rateUsButton, title: "RATE US")
-        setFontForLabel(label: settingsLabel, title: "SETTINGS")
+        setTitleFont(button: soundButton, title: " SOUND ")
+        setTitleFont(button: vibroButton, title: " VIBRO ")
+        setTitleFont(button: rateUsButton, title: " RATE US ")
+        setFontForLabel(label: settingsLabel, title: " SETTINGS ")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -40,7 +40,6 @@ final class SettingsViewController: UIViewController {
     }
 }
 
-// MARK: setTitleFont
 extension SettingsViewController {
     private func setTitleFont(button: UIButton, title: String) {
         let attributesForButtons: [NSAttributedString.Key: Any] = [
@@ -57,7 +56,6 @@ extension SettingsViewController {
     }
 }
 
-// MARK: setFontForLabel
 extension SettingsViewController {
     private func setFontForLabel(label: UILabel, title: String) {
         let attributesForLabel: [NSAttributedString.Key : Any] = [

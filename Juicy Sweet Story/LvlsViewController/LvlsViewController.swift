@@ -22,7 +22,7 @@ final class LvlsViewController: UIViewController {
         collectionView.backgroundColor = .none
         
         lvlsBackgroundImage.image = UIImage(named: "image 5")
-        setFontTitle(label: lvlsLabel, title: "LEVELS")
+        setFontTitle(label: lvlsLabel, title: " LEVELS ")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +55,7 @@ extension LvlsViewController: UICollectionViewDelegate {
         if indexPath.row == 3 {return}
         
         
-        if valuesFromCoreData[indexPath.row] == false {
+        if valuesFromCoreData[indexPath.row] == false || indexPath.row > 11 {
             return
         } else {
             let lvlID = objectsIdFromCoreData[indexPath.row + 1]
@@ -67,7 +67,6 @@ extension LvlsViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: setFontTitle
 extension LvlsViewController {
     func setFontTitle(label: UILabel, title: String) {
         let attributes: [NSAttributedString.Key : Any] = [
@@ -81,7 +80,6 @@ extension LvlsViewController {
     }
 }
 
-// MARK: setImages
 extension LvlsViewController {
     func setImages() {
         let fetchRequest: NSFetchRequest<Level> = Level.fetchRequest()
@@ -104,7 +102,6 @@ extension LvlsViewController {
     }
 }
 
-// MARK: createLayout
 extension LvlsViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))

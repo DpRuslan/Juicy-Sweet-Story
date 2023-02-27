@@ -15,6 +15,7 @@ final class GameLvlViewController: UIViewController {
     private var myStoryboard: UIStoryboard?
     var lvlID: NSManagedObjectID!
     var level: Int!
+    private var bestTime: Int!
     private var dataSource: LevelEnum?
     
     override func viewDidLoad() {
@@ -131,26 +132,22 @@ extension GameLvlViewController: UICollectionViewDelegate {
     
 }
 
-// MARK: checkShuffledData
 extension GameLvlViewController {
     private func checkShuffledData() {
         if shuffledData == finalData {
-            let lvl = AppDelegate.coreDataStack.managedContext.object(with: lvlID) as! Level
-            lvl.levelLockUnlock = true
-            try! AppDelegate.coreDataStack.managedContext.save()
-    
+            checkBestTimeAndUpdateLvl()
             let vc = myStoryboard?.instantiateViewController(withIdentifier: "LvlEndViewController") as! LvlEndViewController
             timer?.invalidate()
             vc.success = true
             vc.delegate = self
             vc.time = self.timeString(time: TimeInterval(self.seconds))
+            vc.bestTime = self.timeString(time: TimeInterval(self.bestTime))
             vc.isModalInPresentation = true
             navigationController?.present(vc, animated: true)
         }
     }
 }
 
-// MARK: createLayout
 extension GameLvlViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -186,7 +183,6 @@ extension GameLvlViewController: LvlEndWinViewControllerDelegate {
     }
 }
 
-// MARK: setTimerLabel
 extension GameLvlViewController {
     func setTimerLabel(label: UILabel, title: String) {
         let attributes: [NSAttributedString.Key : Any] = [
@@ -200,12 +196,11 @@ extension GameLvlViewController {
         label.backgroundColor = .white
         label.layer.borderWidth = 5
         label.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
-        label.layer.cornerRadius = 20
+        label.layer.cornerRadius = 22
         label.layer.masksToBounds = true
     }
 }
 
-// MARK: setViewOfCollection
 extension GameLvlViewController {
     func setViewOfCollection(viewOfCollection: UIView) {
         viewOfCollection.layer.borderColor = UIColor(red: 173/255, green: 27/255, blue: 141/255, alpha: 1).cgColor
@@ -215,7 +210,6 @@ extension GameLvlViewController {
     }
 }
 
-// MARK: checkLvl
 extension GameLvlViewController {
     func checkLvl() {
         if  level == 0 {
@@ -239,7 +233,6 @@ extension GameLvlViewController {
     }
 }
 
-// MARK: checkLvlForTime
 extension GameLvlViewController {
     func checkLvlForTime() {
         if level == 0 {
@@ -252,7 +245,6 @@ extension GameLvlViewController {
     }
 }
 
-// MARK: LevelEnum
 extension GameLvlViewController {
     private enum LevelEnum: Equatable {
         case lvl1
@@ -306,5 +298,20 @@ extension GameLvlViewController {
                 return dataArr
             }
         }
+    }
+}
+
+extension GameLvlViewController {
+    func checkBestTimeAndUpdateLvl() {
+        let item = AppDelegate.coreDataStack.managedContext.object(with: lvlID) as! Level
+        if item.time > seconds {
+            bestTime = Int(item.time)
+        } else {
+            item.time = Int64(seconds)
+            try! AppDelegate.coreDataStack.managedContext.save()
+            bestTime = Int(item.time)
+        }
+        
+        item.levelLockUnlock = true
     }
 }

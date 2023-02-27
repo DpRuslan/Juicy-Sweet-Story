@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Juicy Sweet Story
-//
-//  Created by Ruslan Yarkun on 23.02.2023.
-//
-
 import UIKit
 
 @main

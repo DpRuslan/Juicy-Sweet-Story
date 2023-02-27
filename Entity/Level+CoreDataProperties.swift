@@ -1,11 +1,3 @@
-//
-//  Level+CoreDataProperties.swift
-//  Juicy Sweet Story
-//
-//  Created by Ruslan Yarkun on 27.02.2023.
-//
-//
-
 import Foundation
 import CoreData
 
@@ -16,8 +8,9 @@ extension Level {
         return NSFetchRequest<Level>(entityName: "Level")
     }
 
-    @NSManaged public var levelLockUnlock: Bool
     @NSManaged public var id: Int64
+    @NSManaged public var levelLockUnlock: Bool
+    @NSManaged public var time: Int64
 
 }
 

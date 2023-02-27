@@ -13,10 +13,10 @@ final class MainViewController: UIViewController {
         
         saveToCoreData()
         myStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        setFontTitle(button: playButton, title: "PLAY")
-        setFontTitle(button: gameRulesButton, title: "GAME RULES")
-        setFontTitle(button: settingsButton, title: "SETTINGS")
-        setFontTitle(button: privacyPolicyButton, title: "PRIVACY POLICY")
+        setFontTitle(button: playButton, title: " PLAY ")
+        setFontTitle(button: gameRulesButton, title: " GAME RULES ")
+        setFontTitle(button: settingsButton, title: " SETTINGS ")
+        setFontTitle(button: privacyPolicyButton, title: " PRIVACY POLICY ")
     }
     
     @IBAction func playButtonPressed(_ sender: Any) {
@@ -30,7 +30,6 @@ final class MainViewController: UIViewController {
     }
 }
 
-// MARK: setFontTittle
 extension MainViewController {
     func setFontTitle(button: UIButton, title: String) {
         let attributes: [NSAttributedString.Key: Any] = [
@@ -47,7 +46,6 @@ extension MainViewController {
     }
 }
 
-// MARK: saveToCoreData
 extension MainViewController {
     func saveToCoreData() {
         for i in 0...11 {
@@ -64,6 +62,7 @@ extension MainViewController {
                     let newLevel = Level(context: AppDelegate.coreDataStack.managedContext)
                     newLevel.levelLockUnlock = i.value
                     newLevel.id = Int64(i.key)
+                    newLevel.time = 0
                 }
                 try! AppDelegate.coreDataStack.managedContext.save()
             }
