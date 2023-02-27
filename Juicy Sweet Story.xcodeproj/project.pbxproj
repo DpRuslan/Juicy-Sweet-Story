@@ -13,10 +13,14 @@
 		4411D5E229A799D00054ADE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4411D5E029A799D00054ADE7 /* Main.storyboard */; };
 		4411D5E429A799D20054ADE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4411D5E329A799D20054ADE7 /* Assets.xcassets */; };
 		4411D5E729A799D20054ADE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4411D5E529A799D20054ADE7 /* LaunchScreen.storyboard */; };
+		442C57FC29ABF4E400F47B04 /* Levels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442C57FA29ABF4E400F47B04 /* Levels.xcdatamodeld */; };
+		442C57FE29ABF6E600F47B04 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C57FD29ABF6E600F47B04 /* CoreDataStack.swift */; };
+		442C581129AC43DF00F47B04 /* Level+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C580F29AC43DF00F47B04 /* Level+CoreDataClass.swift */; };
+		442C581229AC43DF00F47B04 /* Level+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C581029AC43DF00F47B04 /* Level+CoreDataProperties.swift */; };
 		4489491829A7E7D5000BAB17 /* LvlsImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489491729A7E7D5000BAB17 /* LvlsImagesCell.swift */; };
 		4489491A29A7EF7E000BAB17 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489491929A7EF7E000BAB17 /* SettingsViewController.swift */; };
-		4489492029A81A81000BAB17 /* GameLvl1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489491F29A81A81000BAB17 /* GameLvl1ViewController.swift */; };
-		4489492429A81D52000BAB17 /* GameLvl1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489492329A81D52000BAB17 /* GameLvl1Cell.swift */; };
+		4489492029A81A81000BAB17 /* GameLvlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489491F29A81A81000BAB17 /* GameLvlViewController.swift */; };
+		4489492429A81D52000BAB17 /* GameLvlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489492329A81D52000BAB17 /* GameLvlCell.swift */; };
 		4489492629A83A65000BAB17 /* LvlEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489492529A83A65000BAB17 /* LvlEndViewController.swift */; };
 		44B6C2F729A7AE5800B560B4 /* LvlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B6C2F629A7AE5800B560B4 /* LvlsViewController.swift */; };
 		44B6C2F929A7D8C200B560B4 /* Knewave-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44B6C2F829A7D8C200B560B4 /* Knewave-Regular.ttf */; };
@@ -31,10 +35,14 @@
 		4411D5E329A799D20054ADE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4411D5E629A799D20054ADE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4411D5E829A799D20054ADE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		442C57FB29ABF4E400F47B04 /* Levels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Levels.xcdatamodel; sourceTree = "<group>"; };
+		442C57FD29ABF6E600F47B04 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		442C580F29AC43DF00F47B04 /* Level+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Level+CoreDataClass.swift"; sourceTree = "<group>"; };
+		442C581029AC43DF00F47B04 /* Level+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Level+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4489491729A7E7D5000BAB17 /* LvlsImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LvlsImagesCell.swift; sourceTree = "<group>"; };
 		4489491929A7EF7E000BAB17 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		4489491F29A81A81000BAB17 /* GameLvl1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLvl1ViewController.swift; sourceTree = "<group>"; };
-		4489492329A81D52000BAB17 /* GameLvl1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLvl1Cell.swift; sourceTree = "<group>"; };
+		4489491F29A81A81000BAB17 /* GameLvlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLvlViewController.swift; sourceTree = "<group>"; };
+		4489492329A81D52000BAB17 /* GameLvlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLvlCell.swift; sourceTree = "<group>"; };
 		4489492529A83A65000BAB17 /* LvlEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LvlEndViewController.swift; sourceTree = "<group>"; };
 		44B6C2F629A7AE5800B560B4 /* LvlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LvlsViewController.swift; sourceTree = "<group>"; };
 		44B6C2F829A7D8C200B560B4 /* Knewave-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Knewave-Regular.ttf"; sourceTree = "<group>"; };
@@ -54,6 +62,7 @@
 		4411D5CE29A799D00054ADE7 = {
 			isa = PBXGroup;
 			children = (
+				442C581329AC52DC00F47B04 /* Entity */,
 				4411D5D929A799D00054ADE7 /* Juicy Sweet Story */,
 				4411D5D829A799D00054ADE7 /* Products */,
 			);
@@ -71,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				4411D5DA29A799D00054ADE7 /* AppDelegate.swift */,
+				442C57FD29ABF6E600F47B04 /* CoreDataStack.swift */,
 				4411D5DC29A799D00054ADE7 /* SceneDelegate.swift */,
 				4411D5DE29A799D00054ADE7 /* MainViewController.swift */,
 				4489491929A7EF7E000BAB17 /* SettingsViewController.swift */,
@@ -94,6 +104,16 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		442C581329AC52DC00F47B04 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				442C581029AC43DF00F47B04 /* Level+CoreDataProperties.swift */,
+				442C580F29AC43DF00F47B04 /* Level+CoreDataClass.swift */,
+				442C57FA29ABF4E400F47B04 /* Levels.xcdatamodeld */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		4489492129A81D1C000BAB17 /* LvlsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,8 +126,8 @@
 		4489492229A81D33000BAB17 /* GameLvl1 */ = {
 			isa = PBXGroup;
 			children = (
-				4489491F29A81A81000BAB17 /* GameLvl1ViewController.swift */,
-				4489492329A81D52000BAB17 /* GameLvl1Cell.swift */,
+				4489491F29A81A81000BAB17 /* GameLvlViewController.swift */,
+				4489492329A81D52000BAB17 /* GameLvlCell.swift */,
 			);
 			path = GameLvl1;
 			sourceTree = "<group>";
@@ -185,14 +205,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4411D5DF29A799D00054ADE7 /* MainViewController.swift in Sources */,
-				4489492029A81A81000BAB17 /* GameLvl1ViewController.swift in Sources */,
+				4489492029A81A81000BAB17 /* GameLvlViewController.swift in Sources */,
 				4489492629A83A65000BAB17 /* LvlEndViewController.swift in Sources */,
+				442C581229AC43DF00F47B04 /* Level+CoreDataProperties.swift in Sources */,
 				4489491A29A7EF7E000BAB17 /* SettingsViewController.swift in Sources */,
+				442C581129AC43DF00F47B04 /* Level+CoreDataClass.swift in Sources */,
 				4489491829A7E7D5000BAB17 /* LvlsImagesCell.swift in Sources */,
 				44B6C2F729A7AE5800B560B4 /* LvlsViewController.swift in Sources */,
+				442C57FE29ABF6E600F47B04 /* CoreDataStack.swift in Sources */,
+				442C57FC29ABF4E400F47B04 /* Levels.xcdatamodeld in Sources */,
 				4411D5DB29A799D00054ADE7 /* AppDelegate.swift in Sources */,
 				4411D5DD29A799D00054ADE7 /* SceneDelegate.swift in Sources */,
-				4489492429A81D52000BAB17 /* GameLvl1Cell.swift in Sources */,
+				4489492429A81D52000BAB17 /* GameLvlCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +432,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		442C57FA29ABF4E400F47B04 /* Levels.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				442C57FB29ABF4E400F47B04 /* Levels.xcdatamodel */,
+			);
+			currentVersion = 442C57FB29ABF4E400F47B04 /* Levels.xcdatamodel */;
+			path = Levels.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4411D5CF29A799D00054ADE7 /* Project object */;
 }

@@ -1,14 +1,19 @@
 import UIKit
+import CoreData
 
 final class LvlsViewController: UIViewController {
     @IBOutlet private weak var lvlsBackgroundImage: UIImageView!
     @IBOutlet private weak var lvlsLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     private var myStoryboard: UIStoryboard?
-    private var data: [UIImage] = []
+    private var data: [Int: UIImage] = [:]
+    private var valuesFromCoreData: [Int: Bool] = [:]
+    private var objectsIdFromCoreData: [Int: NSManagedObjectID] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setImages()
         
         collectionView.collectionViewLayout = createLayout()
         myStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -18,6 +23,9 @@ final class LvlsViewController: UIViewController {
         
         lvlsBackgroundImage.image = UIImage(named: "image 5")
         setFontTitle(label: lvlsLabel, title: "LEVELS")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setImages()
     }
     
@@ -42,18 +50,18 @@ extension LvlsViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 extension LvlsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.row == 0 else {return}
-        let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvl1ViewController") as! GameLvl1ViewController
-        vc.delegate = self
+        
+        // MARK: Just to stop program cause I need to do only 3 levels
+        if indexPath.row == 3 {
+            return
+        }
+        
+        
+        let lvlID = objectsIdFromCoreData[indexPath.row + 1]
+        let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvlViewController") as! GameLvlViewController
+        vc.level = indexPath.row
+        vc.lvlID = lvlID
         navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-// MARK: GameLvl1ViewControllerDelegate
-extension LvlsViewController: GameLvl1ViewControllerDelegate {
-    func imageChange() {
-        data[1] = UIImage(named: "u_2")!
-        collectionView.reloadData()
     }
 }
 
@@ -74,9 +82,25 @@ extension LvlsViewController {
 // MARK: setImages
 extension LvlsViewController {
     func setImages() {
-        for i in 0...11 {
-            let image = UIImage(named: "l_\(i)")!
-            data.append(image)
+        let fetchRequest: NSFetchRequest<Level> = Level.fetchRequest()
+        let items = try! AppDelegate.coreDataStack.managedContext.fetch(fetchRequest)
+        var j = 0
+        for i in items {
+            let objectID = i.objectID
+            objectsIdFromCoreData[j] = objectID
+            valuesFromCoreData[j] = i.levelLockUnlock
+            j += 1
+        }
+        
+        for i in valuesFromCoreData {
+            if i.value == false {
+                data[i.key] = UIImage(named: "l_\(i.key)")!
+            } else {
+                data[i.key] = UIImage(named: "u_\(i.key)")!
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
 }
