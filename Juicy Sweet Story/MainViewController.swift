@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 final class MainViewController: UIViewController {
     @IBOutlet private weak var playButton: UIButton!
@@ -6,9 +7,11 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var settingsButton: UIButton!
     @IBOutlet private weak var privacyPolicyButton: UIButton!
     private var myStoryboard: UIStoryboard?
+    private var lockUnlock: [Bool] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        saveToCoreData()
         myStoryboard = UIStoryboard(name: "Main", bundle: nil)
         setFontTitle(button: playButton, title: "PLAY")
         setFontTitle(button: gameRulesButton, title: "GAME RULES")
@@ -44,3 +47,26 @@ extension MainViewController {
     }
 }
 
+// MARK: saveToCoreData
+extension MainViewController {
+    func saveToCoreData() {
+        for i in 0...11 {
+            if i == 0 {
+                lockUnlock.append(true)
+            } else {
+                lockUnlock.append(false)
+            }
+        }
+        
+        do {
+            if try AppDelegate.coreDataStack.managedContext.count(for: NSFetchRequest<Level>(entityName: "Level")) == 0 {
+                for i in lockUnlock {
+                    let newLevel = Level(context: AppDelegate.coreDataStack.managedContext)
+                    newLevel.levelLockUnlock = i
+                }
+                try! AppDelegate.coreDataStack.managedContext.save()
+            }
+            
+        } catch { }
+    }
+}

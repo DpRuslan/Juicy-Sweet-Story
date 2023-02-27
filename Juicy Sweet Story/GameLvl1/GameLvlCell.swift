@@ -1,5 +1,5 @@
 import UIKit
 
-final class GameLvl1Cell: UICollectionViewCell {
+final class GameLvlCell: UICollectionViewCell {
     @IBOutlet weak var imagesOfLvl1: UIImageView!
 }
