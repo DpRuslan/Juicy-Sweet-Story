@@ -13,7 +13,8 @@ final class GameLvlViewController: UIViewController {
     private var timer: Timer?
     private var selectedIndexPath: IndexPath?
     private var myStoryboard: UIStoryboard?
-    var lvlID: NSManagedObjectID!
+    var lvlIDForImage: NSManagedObjectID!
+    var lvlIDForTime: NSManagedObjectID!
     var level: Int!
     private var bestTime: Int!
     private var dataSource: LevelEnum?
@@ -303,15 +304,17 @@ extension GameLvlViewController {
 
 extension GameLvlViewController {
     func checkBestTimeAndUpdateLvl() {
-        let item = AppDelegate.coreDataStack.managedContext.object(with: lvlID) as! Level
-        if item.time > seconds {
-            bestTime = Int(item.time)
-        } else {
-            item.time = Int64(seconds)
-            try! AppDelegate.coreDataStack.managedContext.save()
-            bestTime = Int(item.time)
-        }
+        let itemForImage = AppDelegate.coreDataStack.managedContext.object(with: lvlIDForImage) as! Level
+        itemForImage.levelLockUnlock = true
+        try! AppDelegate.coreDataStack.managedContext.save()
         
-        item.levelLockUnlock = true
+        let itemForTime = AppDelegate.coreDataStack.managedContext.object(with: lvlIDForTime) as! Level
+        if itemForTime.time > seconds {
+            bestTime = Int(itemForTime.time)
+        } else {
+            itemForTime.time = Int64(seconds)
+            try! AppDelegate.coreDataStack.managedContext.save()
+            bestTime = Int(itemForTime.time)
+        }
     }
 }

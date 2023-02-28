@@ -9,7 +9,8 @@ final class LvlsViewController: UIViewController {
     private var data: [Int: UIImage] = [:]
     private var valuesFromCoreData: [Int: Bool] = [:]
     private var objectsIdFromCoreData: [Int: NSManagedObjectID] = [:]
-    private var lvlID: NSManagedObjectID!
+    private var lvlIDForImage: NSManagedObjectID!
+    private var lvlIDForTime: NSManagedObjectID!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,19 +54,22 @@ extension LvlsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         //MARK: Just to stop program from going to 4 lvl cause I needed to do 3 lvls.
-        if indexPath.row == 3 {return}
+        if indexPath.row == 3 { return }
         
-        if valuesFromCoreData[indexPath.row] == false  {
-            return
-        } else if indexPath.row == 11 {
-             lvlID = objectsIdFromCoreData[indexPath.row]
+        if valuesFromCoreData[indexPath.row] == false  { return }
+        
+        if indexPath.row == 11 {
+             lvlIDForImage = objectsIdFromCoreData[indexPath.row]
+            lvlIDForTime = objectsIdFromCoreData[indexPath.row]
         } else {
-             lvlID = objectsIdFromCoreData[indexPath.row + 1]
+             lvlIDForImage = objectsIdFromCoreData[indexPath.row + 1]
+            lvlIDForTime = objectsIdFromCoreData[indexPath.row]
         }
         
         let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvlViewController") as! GameLvlViewController
         vc.level = indexPath.row
-        vc.lvlID = lvlID
+        vc.lvlIDForImage = lvlIDForImage
+        vc.lvlIDForTime = lvlIDForTime
         navigationController?.pushViewController(vc, animated: true)
     }
 }
