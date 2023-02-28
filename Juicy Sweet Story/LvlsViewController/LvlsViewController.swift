@@ -9,6 +9,7 @@ final class LvlsViewController: UIViewController {
     private var data: [Int: UIImage] = [:]
     private var valuesFromCoreData: [Int: Bool] = [:]
     private var objectsIdFromCoreData: [Int: NSManagedObjectID] = [:]
+    private var lvlID: NSManagedObjectID!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,16 +55,18 @@ extension LvlsViewController: UICollectionViewDelegate {
         //MARK: Just to stop program from going to 4 lvl cause I needed to do 3 lvls.
         if indexPath.row == 3 {return}
         
-        
-        if valuesFromCoreData[indexPath.row] == false || indexPath.row > 11 {
+        if valuesFromCoreData[indexPath.row] == false  {
             return
+        } else if indexPath.row == 11 {
+             lvlID = objectsIdFromCoreData[indexPath.row]
         } else {
-            let lvlID = objectsIdFromCoreData[indexPath.row + 1]
-            let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvlViewController") as! GameLvlViewController
-            vc.level = indexPath.row
-            vc.lvlID = lvlID
-            navigationController?.pushViewController(vc, animated: true)
+             lvlID = objectsIdFromCoreData[indexPath.row + 1]
         }
+        
+        let vc = myStoryboard?.instantiateViewController(withIdentifier: "GameLvlViewController") as! GameLvlViewController
+        vc.level = indexPath.row
+        vc.lvlID = lvlID
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
